@@ -1,27 +1,63 @@
 #include "main.h"
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 
+/**
+ * commandExists - Check if a command exists
+ * @args: Script arguments
+ * @envp: Environment variables
+ * Return: Path of the command, Or NULL
+ * if not exists
+*/
+char *commandExists(char **args, char **envp)
+{
+	char *commandPath;
+	char **pathFolders = getPathFolders(envp);
+
+	if (pathExists(args[0]) < 1)
+	{
+		commandPath = getCommandToAllPaths(pathFolders, args[0]);
+		if (commandPath == NULL)
+		{
+			printf("%s: %d: No such file or directory\n", filePath, lineNumber);
+			return (NULL);
+		}
+		else
+			return (commandPath);
+	}
+}
 /**
  * execute_process - Execute a process from args
  * @args: Command line
  * @filePath: name of the script file path
  * @lineNumber: Line number of the script to execute
+ * @envp: Environment Variable
+ * Return: Result status of the process
 */
-int execute_process(char **args, char *filePath, int lineNumber)
+int execute_process(char **args, char *filePath, int lineNumber, char **envp)
 {
 	pid_t pid;
 	int status;
 	char *message = malloc(64 * sizeof(char));
+	char *commandPath = commandExists(args, envp);
+
+	if (commandPath == NULL)
+	{
+		free(message);
+		return (-1);
+	}
 
 	pid = fork();
 	if (pid ==  0)
 	{
-		if (execve(args[0], args, NULL) == -1)
+		if (execve(commandPath, args, envp) == -1)
 		{
 			sprintf(message, "%s: %d", filePath, lineNumber);
 			perror(message);
-		}	
+		}
+		free(message);
+		free(commandPath);
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
@@ -35,13 +71,23 @@ int execute_process(char **args, char *filePath, int lineNumber)
 			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
+	free(commandPath);
 	free(message);
 	return (-1);
 }
 
-int parse_args(char **args, char *filePath, int lineNumber)
+/**
+ * parse_args - Parse argument to execute
+ * a process
+ * @args: Arguments
+ * @filePath: Path of the executable
+ * @lineNumber: Line number of the script
+ * @envp: Environment variables
+ * Return: Status of the process execution
+*/
+int parse_args(char **args, char *filePath, int lineNumber, char **envp)
 {
 	if (args[0] == NULL)
 		return (-1);
-	return (execute_process(args, filePath, lineNumber));
+	return (execute_process(args, filePath, lineNumber, envp));
 }

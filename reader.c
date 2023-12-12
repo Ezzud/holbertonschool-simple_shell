@@ -1,5 +1,4 @@
 #include "main.h"
-#include <string.h>
 /**
  * read_line - Read a line from stdin
  * Return: the line found in stdin
@@ -30,9 +29,10 @@ char *read_line(void)
  * split_line - Split a line using common
  * separators
  * @line: Line to separate
+ * @separators: String used to separate
  * Return: Array of strings containing a word each
 */
-char **split_line(char *line)
+char **split_line(char *line, char *separators)
 {
 	int bufsize = 64;
 	int i = 0;
@@ -44,7 +44,7 @@ char **split_line(char *line)
 		fprintf(stderr, "allocation error in split_line: tokens\n");
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(line, " \t\r\n\a\"");
+	token = strtok(line, separators);
 	while (token != NULL)
 	{
 		if (token[0] == '#')
@@ -61,7 +61,7 @@ char **split_line(char *line)
 				exit(EXIT_FAILURE);
 			}
 		}
-		token = strtok(NULL, " \t\r\n\a\"");
+		token = strtok(NULL, separators);
 	}
 	tokens[i] = NULL;
 	return (tokens);
