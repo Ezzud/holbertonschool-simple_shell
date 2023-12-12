@@ -13,6 +13,19 @@ For this project called "Simple Shell" we had two weeks to complete it. The task
 Objective is to create a `hsh` command, allowing us to execute script in different ways
 
 ### Usage
+Open interactive mode:
+```
+./hsh
+```
+
+Execute script in non-interactive mode:
+```
+cat script.sh | ./hsh
+```
+
+
+
+### Examples
 1. Interactive mode
 ```
 $ ./hsh
@@ -41,6 +54,6 @@ Us two were in charge of checking the code and approving update & merge.
 <p align="center">
   <img src="https://raw.githubusercontent.com/Ezzud/holbertonschool-simple_shell/README-update/assets/kanban.png">
 </p>
-*Screenshot of our Kanban board*
+Screenshot of our Kanban board
 
 ## Flowchart
