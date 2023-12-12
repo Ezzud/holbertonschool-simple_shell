@@ -2,6 +2,10 @@
 #include <string.h>
 #include <stdio.h>
 
+/**
+ * read_line - Read a line from stdin
+ * Return: the line found in stdin
+*/
 char *read_line(void)
 {
     char *line = NULL;
@@ -12,53 +16,16 @@ char *read_line(void)
         if (feof(stdin))
         {
             free(line);
-            exit(EXIT_SUCCESS);
+            return (NULL);
         }
         else
         {
             free(line);
             printf("Error while reading the line from stdin");
-            exit(EXIT_FAILURE);
+            return (NULL);
         }
     }
     return (line);
-}
-
-char **split_line(char *line)
-{
-    int bufsize = 64;
-    int i = 0;
-    char **tokens = malloc(bufsize * sizeof(char *));
-    char *token;
-
-    if (!tokens)
-    {
-        fprintf(stderr, "allocation error in split_line: tokens\n");
-        exit(EXIT_FAILURE);
-    }
-    token = strtok(line, " \t\r\n\a\"");
-    while (token != NULL)
-    {
-        if (token[0] == '#')
-        {
-            break;
-        }
-        tokens[i] = token;
-        i++;
-        if (i >= bufsize)
-        {
-            bufsize += bufsize;
-            tokens = realloc(tokens, bufsize * sizeof(char *));
-            if (!tokens)
-            {
-                fprintf(stderr, "reallocation error in split_line: tokens");
-                exit(EXIT_FAILURE);
-            }
-        }
-        token = strtok(NULL, " \t\r\n\a\"");
-    }
-    tokens[i] = NULL;
-    return (tokens);
 }
 
 char* concat(const char *s1, const char *s2)
@@ -73,13 +40,10 @@ void handle_no_interactive(void)
 {
     int endwhile = 0;
 
+    printf("Full Content:\n");
     while(endwhile == 0)
     {
-        int _arg = 0;
         char *line;
-        char *content;
-        char *mix;
-        char **args;
 
         line = read_line();
         if(line == NULL)
@@ -87,23 +51,8 @@ void handle_no_interactive(void)
             endwhile = 1;
             break;
         }
-        if(content == NULL)
-            content = concat("", strdup(line));
-        else
-        {
-        }
-        printf("Full Content:\n");
-        printf("%s", content);
-        args = split_line(line);
-        
 
-        while(*args != NULL)
-        {
-            printf("Non-Interactive arg n°%d: %s\n", _arg, *args);
-            _arg++;
-            args += 1;
-        }
-        
+        printf("%s\n", line);        
     }
     
 }
