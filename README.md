@@ -47,7 +47,9 @@ $
 
 ## Distribution of tasks
 Valentin was in charge of process execution, PATH integration and "interactive/non-interactive" handling
+
 Houcine was in charge of built-in functions, README.md, MAN page and AUTHORS file.
+
 Us two were in charge of checking the code and approving update & merge.
 
 
