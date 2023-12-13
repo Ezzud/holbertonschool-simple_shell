@@ -15,4 +15,5 @@ int execute_process(char **args, char *filePath, int lineNumber, char **envp);
 int parse_args(char **args, char *filePath, int lineNumber, char **envp);
 char **getPathFolders(char **envp);
 char *getCommandToAllPaths(char **folders, char *commandName);
+int pathExists(char *path);
 #endif

@@ -1,16 +1,17 @@
 #include "main.h"
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/stat.h>
 
 /**
  * commandExists - Check if a command exists
  * @args: Script arguments
+ * @filePath: name of the script file path
+ * @lineNumber: Line number of the script to execute
  * @envp: Environment variables
  * Return: Path of the command, Or NULL
  * if not exists
 */
-char *commandExists(char **args, char **envp)
+char *commandExists(char **args, char *filePath, int lineNumber, char **envp)
 {
 	char *commandPath;
 	char **pathFolders = getPathFolders(envp);
@@ -26,6 +27,7 @@ char *commandExists(char **args, char **envp)
 		else
 			return (commandPath);
 	}
+	return (NULL);
 }
 /**
  * execute_process - Execute a process from args
@@ -40,7 +42,7 @@ int execute_process(char **args, char *filePath, int lineNumber, char **envp)
 	pid_t pid;
 	int status;
 	char *message = malloc(64 * sizeof(char));
-	char *commandPath = commandExists(args, envp);
+	char *commandPath = commandExists(args, filePath, lineNumber, envp);
 
 	if (commandPath == NULL)
 	{

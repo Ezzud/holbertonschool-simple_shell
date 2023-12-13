@@ -1,5 +1,6 @@
 #include "main.h"
 #include <dirent.h>
+#include <sys/stat.h>
 
 /**
  * getArrayLength - get the length of an
@@ -14,6 +15,18 @@ int getArrayLength(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
+}
+
+/**
+ * pathExists - Check if a path exists
+ * @path: Path to check
+ * Return: 1 if found, 0 if not found
+*/
+int pathExists(char *path)
+{
+	if (access(path, X_OK) == 0)
+		return (1);
+	return (0);
 }
 
 /**
@@ -112,16 +125,4 @@ char *getCommandToAllPaths(char **folders, char *commandName)
 		i++;
 	}
 	return (NULL);
-}
-
-/**
- * pathExists - Check if a path exists
- * @path: Path to check
- * Return: 1 if found, 0 if not found
-*/
-int pathExists(char *path)
-{
-	if (access(path, X_OK) == 0)
-		return (1);
-	return (0);
 }
