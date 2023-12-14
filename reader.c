@@ -13,6 +13,7 @@ char *read_line(void)
 		if (feof(stdin))
 		{
 			free(line);
+			printf("\n");
 			exit(EXIT_SUCCESS);
 		}
 		else

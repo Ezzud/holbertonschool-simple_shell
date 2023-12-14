@@ -1,0 +1,21 @@
+.TH hsh 1 "December 2023" "Made for Holberton School" "User commands"
+.SH NAME
+hsh - Execute Shell script in multiple mode
+.SH SYNOPSIS
+ ./hsh
+.SH DESCRIPTION
+Execute Shell script in multiple mode
+
+Interactive mode : ./hsh
+Non-interactive mode : cat script.sh | ./hsh
+
+Built-in functions:
+- env : Print the environment variables
+- exit : Exit the program
+
+.SH AUTHOR
+Written by Valentin and Houcine
+.SH SEE ALSO
+man sh
+
+Source code available at: <https://github.com/Ezzud/holbertonschool-simple_shell>
