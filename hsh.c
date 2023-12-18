@@ -22,15 +22,13 @@ void handle_no_interactive(char *filePath, char **envp)
 			break;
 		}
 		args = split_line(line, ARG_SEPARATOR);
-		lineNumber++;
 		endwhile = parse_args(args, filePath, lineNumber, envp);
+		lineNumber++;
 
 		free(line);
 		free(args);
-		if (endwhile >= 0) {
+		if (endwhile >= 0)
 			exit(endwhile);
-		}
-			
 	}
 }
 

@@ -53,6 +53,7 @@ char **getPathFolders(char **envp)
 				char **paths = split_line(args[1], PATH_SEPARATOR);
 				int pathLength = getArrayLength(paths);
 
+				free(args);
 				if (pathLength > 0)
 					return (paths);
 				return (NULL);

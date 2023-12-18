@@ -19,6 +19,8 @@ char *commandExists(char **args, char *filePath, int lineNumber, char **envp)
 	if (pathExists(args[0]) < 1)
 	{
 		commandPath = getCommandToAllPaths(pathFolders, args[0]);
+
+		free(pathFolders);
 		if (commandPath == NULL)
 		{
 			printf("%s: %d: No such file or directory\n", filePath, lineNumber);
@@ -28,6 +30,7 @@ char *commandExists(char **args, char *filePath, int lineNumber, char **envp)
 		else
 			return (commandPath);
 	}
+	free(pathFolders);
 	return (strdup(args[0]));
 }
 /**
@@ -48,6 +51,7 @@ int execute_process(char **args, char *filePath, int lineNumber, char **envp)
 	if (commandPath == NULL)
 	{
 		free(message);
+		free(commandPath);
 		return (-1);
 	}
 
