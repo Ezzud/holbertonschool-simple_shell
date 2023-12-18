@@ -95,7 +95,10 @@ char *getCommandPath(char *basePath, char *commandName)
 			if (stat(path, &sb) == 0 && sb.st_mode & S_IXUSR)
 			{
 				if (strcmp(commandName, dp->d_name) == 0)
+				{
+					closedir(dir);
 					return (path);
+				}
 			}
 			getCommandPath(path, commandName);
 		}

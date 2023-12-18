@@ -42,7 +42,7 @@ char **split_line(char *line, char *separators)
 
 	if (!tokens)
 	{
-		fprintf(stderr, "allocation error in split_line: tokens\n");
+		fprintf(stderr, "allocation error: tokens\n");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, separators);
@@ -58,7 +58,7 @@ char **split_line(char *line, char *separators)
 			tokens = realloc(tokens, bufsize * sizeof(char *));
 			if (!tokens)
 			{
-				fprintf(stderr, "reallocation error in split_line: tokens");
+				fprintf(stderr, "reallocation error: tokens");
 				exit(EXIT_FAILURE);
 			}
 		}

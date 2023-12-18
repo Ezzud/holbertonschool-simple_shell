@@ -24,8 +24,13 @@ void handle_no_interactive(char *filePath, char **envp)
 		args = split_line(line, ARG_SEPARATOR);
 		lineNumber++;
 		endwhile = parse_args(args, filePath, lineNumber, envp);
-		if (endwhile >= 0)
+
+		free(line);
+		free(args);
+		if (endwhile >= 0) {
 			exit(endwhile);
+		}
+			
 	}
 }
 
@@ -48,6 +53,7 @@ void handle_interactive(char *filePath, char **envp)
 		args = split_line(line, ARG_SEPARATOR);
 		lineNumber++;
 		status = parse_args(args, filePath, lineNumber, envp);
+
 		free(line);
 		free(args);
 		if (status >= 0)

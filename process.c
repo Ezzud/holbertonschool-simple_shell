@@ -22,12 +22,13 @@ char *commandExists(char **args, char *filePath, int lineNumber, char **envp)
 		if (commandPath == NULL)
 		{
 			printf("%s: %d: No such file or directory\n", filePath, lineNumber);
+			free(commandPath);
 			return (NULL);
 		}
 		else
 			return (commandPath);
 	}
-	return (NULL);
+	return (strdup(args[0]));
 }
 /**
  * execute_process - Execute a process from args
