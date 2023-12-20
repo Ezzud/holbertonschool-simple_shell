@@ -70,3 +70,8 @@ $
 Screenshot of our Kanban board
 
 ## Flowchart
+
+<img src="https://github.com/Ezzud/holbertonschool-simple_shell/blob/master/assets/Flowchart-com.jpeg?raw=true">
+
+<img src="https://github.com/Ezzud/holbertonschool-simple_shell/blob/master/assets/Flowchart.jpeg?raw=true">
+
