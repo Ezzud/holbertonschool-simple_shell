@@ -47,17 +47,18 @@ $
 
 
 ## Distribution of tasks
-<details>
+<details open>
 <summary>Valentin was in charge of process execution, PATH integration and "interactive/non-interactive" handling</summary>
 - <a href="https://github.com/Ezzud/holbertonschool-simple_shell/tree/args-handling" target="_blank">branch: args-handling</a><br>
 - <a href="https://github.com/Ezzud/holbertonschool-simple_shell/tree/exec-process" target="_blank">branch: exec-process</a>
 </details>
-<details>
+<details open>
 <summary>Houcine was in charge of built-in functions, README.md, MAN page, Flowchart and AUTHORS file.</summary>
 - <a href="https://github.com/Ezzud/holbertonschool-simple_shell/tree/README-update" target="_blank">branch: README-update</a><br>
+- <a href="https://github.com/Ezzud/holbertonschool-simple_shell/tree/Flowchart-upload" target="_blank">branch: README-update</a><br>
 - <a href="https://github.com/Ezzud/holbertonschool-simple_shell/tree/builtin-functions" target="_blank">branch: builtin-functions</a>
 </details>
-<details>
+<details open>
 <summary>Us two were in charge of checking the code and approving update & merge.</summary>
 - <a href="https://github.com/Ezzud/holbertonschool-simple_shell/pulls" target="_blank">pull requests</a><br>
   - <a href="https://github.com/Ezzud/holbertonschool-simple_shell/commits/master" target="_blank">commits</a><br>
